@@ -25,6 +25,7 @@ export const FibonacciPage: React.FC = () => {
     setPending(state => !state);
   }
 
+  console.log(numbers);
   useEffect(() => {
 
     setTimeout(() => {
@@ -35,8 +36,8 @@ export const FibonacciPage: React.FC = () => {
             let index = nums.index;
 
             const next = arr[index - 2] + arr[index - 1];
-            let nextIndex = index;
-
+            let nextIndex = index + 1;
+            
             return { ...nums, index: nextIndex, arr: [...arr, next] }
           } else {
             setPending(false);
