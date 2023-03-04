@@ -64,7 +64,7 @@ export class Queue<T> implements IQueue<T> {
 
   getTail = () => this.tail > this.size ? this.tail % this.size : this.tail;
 
-  getHead = () => this.head % this.size;
+  getHead = () => this.head > this.size ? this.head % this.size : this.head;
 
   getSize = () => this.size;
 }
@@ -152,7 +152,7 @@ export const QueuePage: React.FC = () => {
         />
         <Button
           extraClass={styles.AddButton}
-          disabled={isValid}
+          disabled={isValid || queue.getSize() === queue.getTail()}
           isLoader={isPending}
           type='submit'
           text='Добавить'
@@ -160,7 +160,7 @@ export const QueuePage: React.FC = () => {
         />
         <Button
           extraClass={styles.RemoveButton}
-          disabled={isValid}
+          disabled={isValid || queue.getSize() === queue.getHead()}
           isLoader={isPending}
           type='button'
           text='Удалить'
