@@ -1,0 +1,38 @@
+.Contorls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.ElementsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 48px;
+}
+
+.RadioButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-right: 52px;
+}
+
+.RadioButton {
+    padding-right: 40px;
+}
+
+.RadioButton:last-child {
+    padding-right: 0;
+}
+
+.SortButtonAsc {
+    margin-right: 12px;
+}
+
+.SortButtonDesc {
+    margin-right: 80px;
+}

@@ -61,7 +61,8 @@ export const FibonacciPage: React.FC = () => {
           onChange={handleInputChange}
         />
         <Button
-          disabled={isPending || isValid}
+          disabled={isValid}
+          isLoader={isPending}
           type='submit'
           text='Развернуть'
           onClick={handleSubmit}
