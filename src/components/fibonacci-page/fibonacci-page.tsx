@@ -25,7 +25,6 @@ export const FibonacciPage: React.FC = () => {
     setPending(state => !state);
   }
 
-  console.log(numbers);
   useEffect(() => {
 
     setTimeout(() => {
