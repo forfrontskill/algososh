@@ -36,7 +36,7 @@ export const FibonacciPage: React.FC = () => {
 
             const next = arr[index - 2] + arr[index - 1];
             let nextIndex = index + 1;
-            
+
             return { ...nums, index: nextIndex, arr: [...arr, next] }
           } else {
             setPending(false);
@@ -55,12 +55,17 @@ export const FibonacciPage: React.FC = () => {
     <SolutionLayout title="Последовательность Фибоначчи">
       <form className={styles.Form}>
         <Input
+          disabled={isPending}
           value={inputForm}
           maxLength={19}
+          type='number'
+          max={'19'}
+          min={'1'}
           isLimitText={true}
           onChange={handleInputChange}
         />
         <Button
+          extraClass={styles.Button}
           disabled={isValid}
           isLoader={isPending}
           type='submit'

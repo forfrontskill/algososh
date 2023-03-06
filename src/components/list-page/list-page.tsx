@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { ElementStates } from "../../types/element-states";
-import { LinkedList } from "../../utils/linkedlist";
+import { LinkedListNode } from "../../utils/linkedlist";
 import { delay } from "../../utils/specdelay";
 import { Button } from "../ui/button/button";
 import CircleExtended from "../ui/circle-extended/circle-extended";
@@ -26,7 +26,7 @@ type TButtonsStatus = {
   removeByIndex: TButtonStatus
 }
 
-const list = new LinkedList<string>('0');
+const list = new LinkedListNode<string>('0');
 list.append('34');
 list.append('8');
 list.append('1');
@@ -52,6 +52,7 @@ export const ListPage: React.FC = () => {
 
   const handleInputValueChange = (event: FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
+    const isCorrectInterval = (Number(inputIndexForm) <= list.getSize() - 1) && Number(inputIndexForm) >= 0;
     setInputValueForm(value);
     setPending({
       inputValue: 'active',
@@ -60,13 +61,14 @@ export const ListPage: React.FC = () => {
       addTail: value ? 'active' : 'disabled',
       removeHead: 'active',
       removeTail: 'active',
-      addByIndex: value && inputIndexForm ? 'active' : 'disabled',
-      removeByIndex: inputIndexForm ? 'active' : 'disabled',
+      addByIndex: value && inputIndexForm && isCorrectInterval ? 'active' : 'disabled',
+      removeByIndex: inputIndexForm && isCorrectInterval ? 'active' : 'disabled',
     });
   }
 
   const handleInputIndexChange = (event: FormEvent<HTMLInputElement>) => {
     const index = event.currentTarget.value;
+    const isCorrectInterval = (Number(index) <= list.getSize() - 1) && Number(index) >= 0;
     setInputIndexForm(index);
     setPending({
       inputValue: 'active',
@@ -75,8 +77,8 @@ export const ListPage: React.FC = () => {
       addTail: inputValueForm ? 'active' : 'disabled',
       removeHead: 'active',
       removeTail: 'active',
-      addByIndex: inputValueForm && index ? 'active' : 'disabled',
-      removeByIndex: index ? 'active' : 'disabled',
+      addByIndex: inputValueForm && index && isCorrectInterval ? 'active' : 'disabled',
+      removeByIndex: index && isCorrectInterval ? 'active' : 'disabled',
     });
   }
 
@@ -93,9 +95,12 @@ export const ListPage: React.FC = () => {
     });
 
     const addTopArray = [...array];
-    addTopArray[0].top = { num: inputValueForm, color: ElementStates.Changing }
-    setArray(addTopArray);
-    await delay(DELEAY_TIME);
+    if(addTopArray.length !== 0){
+      addTopArray[0].top = { num: inputValueForm, color: ElementStates.Changing }
+      setArray(addTopArray);
+      await delay(DELEAY_TIME);
+    }
+    
 
     list.prepend(inputValueForm);
 
@@ -131,9 +136,12 @@ export const ListPage: React.FC = () => {
       removeByIndex: 'disabled'
     });
     const addTailArray = [...array];
-    addTailArray[addTailArray.length - 1].top = { num: inputValueForm, color: ElementStates.Changing }
-    setArray(addTailArray);
-    await delay(DELEAY_TIME);
+    if(addTailArray.length !== 0){
+      addTailArray[addTailArray.length - 1].top = { num: inputValueForm, color: ElementStates.Changing }
+      setArray(addTailArray);
+      await delay(DELEAY_TIME);
+    }
+    
 
     list.append(inputValueForm);
 
@@ -354,7 +362,7 @@ export const ListPage: React.FC = () => {
         />
         <Button
           extraClass={styles.SmallButton}
-          disabled={isPending.removeHead === 'disabled'}
+          disabled={isPending.removeHead === 'disabled' || list.getSize() === 0 }
           isLoader={isPending.removeHead === 'pending'}
           type='button'
           text='Удалить из head'
@@ -362,7 +370,7 @@ export const ListPage: React.FC = () => {
         />
         <Button
           extraClass={styles.SmallButton}
-          disabled={isPending.removeTail === 'disabled'}
+          disabled={isPending.removeTail === 'disabled' || list.getSize() === 0}
           isLoader={isPending.removeTail === 'pending'}
           type='button'
           text='Удалить из tail'
@@ -372,6 +380,7 @@ export const ListPage: React.FC = () => {
       <div className={styles.Form}>
         <Input
           type='number'
+          min='0'
           disabled={isPending.inputIndex === 'disabled'}
           extraClass={styles.Input}
           value={inputIndexForm}

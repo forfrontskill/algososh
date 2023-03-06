@@ -1,73 +1,12 @@
 import React, { FormEvent, SyntheticEvent, useEffect, useState } from "react";
 import { ElementStates } from "../../types/element-states";
+import Queue from "../../utils/queue";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 
 import styles from './queue-page.module.css';
-
-interface IQueue<T> {
-  enqueue: (item: T) => void;
-  dequeue: () => void;
-  peak: () => T | null;
-}
-
-export class Queue<T> implements IQueue<T> {
-  private container: (T | null)[] = [];
-  private head = 0;
-  private tail = 0;
-  private readonly size: number = 0;
-  private length: number = 0;
-
-  constructor(size: number) {
-    this.size = size;
-    this.container = Array(size);
-  }
-
-  enqueue = (item: T) => {
-    if (this.length >= this.size) {
-      throw new Error("Maximum length exceeded");
-    }
-    this.container[this.tail % this.size] = item;
-    this.tail++;
-    this.length++;
-  };
-
-  dequeue = () => {
-    if (this.isEmpty()) {
-      throw new Error("No elements in the queue");
-    }
-    
-    this.container[this.head%this.size] = null;
-    this.head++;
-    this.length--;
-  };
-
-  peak = (): T | null => {
-    if (this.isEmpty()) {
-      throw new Error("No elements in the queue");
-    }
-    return this.container[this.head];
-  };
-
-  clean = () => {
-    this.container = [];
-    this.tail = 0;
-    this.head = 0;
-    this.length = 0;
-  }
-
-  isEmpty = () => this.length === 0;
-
-  getElements = () => this.container;
-
-  getTail = () => this.tail > this.size ? this.tail % this.size : this.tail;
-
-  getHead = () => this.head > this.size ? this.head % this.size : this.head;
-
-  getSize = () => this.size;
-}
 
 const queue = new Queue<string>(6);
 
@@ -116,23 +55,23 @@ export const QueuePage: React.FC = () => {
     const head = queue.getHead();
     let actionIndex = size + 1;
 
-    actionIndex = action === 'add' ? tail : head ;
-    const tailPending = isPending && action === 'add' ? tail-1 : tail; 
+    actionIndex = action === 'add' ? tail : head;
+    const tailPending = isPending && action === 'add' ? tail - 1 : tail;
 
     for (let index = 0; index < size; index++) {
       const element = array[index];
       components.push(
         <Circle
-            key={index}
-            head={index === head ? 'head' : ''}
-            tail={index === tailPending ? 'tail' : ''}
-            state={index === actionIndex && isPending ? ElementStates.Changing : ElementStates.Default}
-            letter={index === actionIndex && isPending && action === 'add' ? '' : (element ? element : '')}
-            index={index}
-            extraClass={styles.Number}
-          />
+          key={index}
+          head={index === head ? 'head' : ''}
+          tail={index === tailPending ? 'tail' : ''}
+          state={index === actionIndex && isPending ? ElementStates.Changing : ElementStates.Default}
+          letter={index === actionIndex && isPending && action === 'add' ? '' : (element ? element : '')}
+          index={index}
+          extraClass={styles.Number}
+        />
       )
-      
+
     }
 
     return components;
@@ -144,6 +83,7 @@ export const QueuePage: React.FC = () => {
     <SolutionLayout title="Очередь">
       <form className={styles.Form}>
         <Input
+          disabled={isPending}
           extraClass={styles.Input}
           value={inputForm}
           maxLength={4}

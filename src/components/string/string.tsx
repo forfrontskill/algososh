@@ -33,7 +33,7 @@ export const StringComponent: React.FC = () => {
       setForm((state) => {
 
         if (isPending) {
-          
+
           let start = state.startIndex;
           let end = state.endIndex;
           const arrNew = [...state.arr];
@@ -55,8 +55,8 @@ export const StringComponent: React.FC = () => {
             end--;
             return { str: '', startIndex: start, endIndex: end, arr: arrNew };
           } else {
-              setPending(false);
-              return {...state, arr: state.arr.map(item => ({char:item.char, color: ElementStates.Modified}))};
+            setPending(false);
+            return { ...state, arr: state.arr.map(item => ({ char: item.char, color: ElementStates.Modified })) };
           }
         } else {
           setPending(false);
@@ -71,21 +71,25 @@ export const StringComponent: React.FC = () => {
     <SolutionLayout title="Строка">
       <form className={styles.Form}>
         <Input
+          disabled={isPending}
           value={inputForm}
           maxLength={11}
           isLimitText={true}
           onChange={handleInputChange}
         />
         <Button
-          disabled={isPending}
+          extraClass={styles.Button}
+          isLoader={isPending}
+          disabled={!inputForm}
           type='submit'
           text='Развернуть'
           onClick={handleSubmit}
         />
       </form>
       <div className={styles.CharContainer}>
-        {form?.arr.map(itemChar => (
+        {form?.arr.map((itemChar, index) => (
           <Circle
+            key={index}
             letter={itemChar.char}
             state={itemChar.color}
           />

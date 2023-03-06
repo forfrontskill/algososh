@@ -1,47 +1,12 @@
 import React, { FormEvent, SyntheticEvent, useEffect, useState } from "react";
 import { ElementStates } from "../../types/element-states";
+import Stack from "../../utils/stack";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 
 import styles from './stack-page.module.css';
-
-
-interface IStack<T> {
-  push: (item: T) => void;
-  pop: () => void;
-  peak: () => T | null;
-  getSize: () => number;
-}
-
-export class Stack<T> implements IStack<T> {
-  private container: T[] = [];
-
-  push = (item: T): void => {
-    this.container.push(item);
-  };
-
-  pop = (): void => {
-    this.container.pop();
-  };
-
-  peak = (): T | null => {
-    const length = this.container.length;
-    if (length === 0) {
-      return null;
-    }
-    return this.container[length - 1];
-  };
-
-  getSize = () => this.container.length;
-
-  getElements = () => this.container;
-
-  clean = () => { this.container = [] }
-}
-
-
 
 const staticStack = new Stack<string>();
 
@@ -66,7 +31,7 @@ export const StackPage: React.FC = () => {
   }
 
   const handleCleanStack = () => {
-    staticStack.clean();
+    staticStack.clear();
     setPending(true);
   }
 
@@ -85,6 +50,7 @@ export const StackPage: React.FC = () => {
     <SolutionLayout title="Стек">
       <form className={styles.Form}>
         <Input
+          disabled={isPending}
           extraClass={styles.Input}
           value={inputForm}
           maxLength={4}

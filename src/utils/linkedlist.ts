@@ -20,7 +20,7 @@ interface ILinkedList<T> {
   getTail: () => Node<T> | null;
 }
 
-export class LinkedList<T> implements ILinkedList<T> {
+export class LinkedListNode<T> implements ILinkedList<T> {
 
   private head: Node<T> | null;
   private tail: Node<T> | null;

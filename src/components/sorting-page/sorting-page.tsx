@@ -21,10 +21,14 @@ export const SortingPage: React.FC = () => {
   const [isPending, setPending] = useState<boolean>(false);
   const [sortType, setSortType] = useState<string>('choose');
   const [sortDiraction, setSortDiraction] = useState<Direction>(Direction.Ascending);
-  const [data, setData] = useState<TSortState>({ curr: 0, next: 0, maxIndex: 0, elements: [] })
+  const [data, setData] = useState<TSortState>({ 
+    curr: 0, 
+    next: 0, 
+    maxIndex: 0, 
+    elements: randomArr(3, 17).map(item => ({ num: item, color: ElementStates.Default })) })
 
   const handleGenerateArray = () => {
-    const newArr = randomArr(6, 6).map(item => ({ num: item, color: ElementStates.Default }));
+    const newArr = randomArr(3, 17).map(item => ({ num: item, color: ElementStates.Default }));
     setData({ ...data, elements: newArr, curr:0, next:0, maxIndex:0 });
   }
 
