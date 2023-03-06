@@ -1,0 +1,34 @@
+.CircleExtended {
+    display: block;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    height: 234px;
+}
+
+.CircleWirhArrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.MainCircle {
+    margin: 4px 16px 38px 0;
+}
+
+.SmallCircleContainer {
+    height: 56px;
+}
+
+.TopCircle {
+    padding-left: 12px;
+}
+
+.BottomCircle {
+    padding-left: 12px;
+}
+
+.Arrow {
+    padding-bottom: 24px;
+}

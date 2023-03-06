@@ -1,0 +1,26 @@
+.Form {
+    display: flex;
+    flex-direction: row;
+    max-width: 567px;
+    margin: 0 auto;
+}
+
+.CharContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 944px;
+    justify-content: flex-start;
+    padding-top: 48px;
+    margin: 0 auto;
+    gap: 16px;
+}
+
+.Number {
+    padding-top: 48px;
+    justify-content: space-between;
+}
+
+.Button {
+    margin-left: 12px;
+}
