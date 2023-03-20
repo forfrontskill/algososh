@@ -1,0 +1,30 @@
+.Form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Input {
+    width: 377px;
+    margin-right: 12px;
+}
+
+.AddButton {
+    margin-right: 12px;
+}
+
+.RemoveButton {
+    margin-right: 80px;
+}
+
+
+.CharContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 944px;
+    justify-content: flex-start;
+    padding-top: 48px;
+    margin: 0 auto;
+    gap: 16px;
+}
