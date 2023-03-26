@@ -44,7 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
       ) : (
         <>
           {sorting && currentIcon}
-          <p className={`text ${sorting && "ml-5"}`}>{text}</p>
+          <p className={`text ${sorting && "ml-5"}`} data-testid="button-text">{text}</p>
         </>
       )}
     </button>
