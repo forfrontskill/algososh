@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Column component Column rendering 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="column default"
+    style={
+      Object {
+        "height": 3.2,
+      }
+    }
+  />
+  <p
+    className="text text_type_column text_color_input mt-3"
+  >
+    1
+  </p>
+</div>
+`;

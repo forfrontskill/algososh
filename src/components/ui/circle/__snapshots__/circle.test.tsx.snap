@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test Circle component Button rendering 1`] = `
+exports[`Test Circle component Circle rendering 1`] = `
 <div
   className="content "
   data-testid="circle"
