@@ -2135,6 +2135,13 @@
     "@types/history" "^4.7.11"
     "@types/react" "*"
 
+"@types/react-test-renderer@^18.0.0":
+  "integrity" "sha512-C7/5FBJ3g3sqUahguGi03O79b8afNeSD6T8/GU50oQrJCU0bVCCGQHaGKUbg2Ce8VQEEqTw8/HiS6lXHHdgkdQ=="
+  "resolved" "http://npm.prakticum-team.ru/@types/react-test-renderer/-/react-test-renderer-18.0.0.tgz"
+  "version" "18.0.0"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^17", "@types/react@^17.0.39":
   "integrity" "sha512-1yIpQR2zdYu1Z/dc1OxC+MA6GR240u3gcnP4l6mvj/PJiVaqHsQPmWttsvHsfnhfPbU2FuGmo0wSITPygjBmsw=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-17.0.53.tgz"

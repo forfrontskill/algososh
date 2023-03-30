@@ -2,8 +2,16 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Circle } from './circle';
 import { ElementStates } from '../../../types/element-states';
-
+import renderer from 'react-test-renderer';
 describe('Test Circle component', () => {
+
+    it('Button rendering', () => {
+        const tree = renderer
+          .create(<Circle/>)
+          .toJSON();
+          expect(tree).toMatchSnapshot();
+      });
+
     it('Circle creation', ()=>{
         const context = render(<Circle />);
 

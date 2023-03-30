@@ -1,8 +1,16 @@
 import React from 'react';
 import { Button } from './button';
 import { render, screen } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 describe('Test Button component', () => {
     
+    it('Button rendering', () => {
+        const tree = renderer
+          .create(<Button text='ButtonTextTest' />)
+          .toJSON();
+          expect(tree).toMatchSnapshot();
+      });
+
     it('Button creation', () => {
         const context = render(<Button text='ButtonTextTest' />);
     

@@ -1,5 +1,5 @@
 
-describe('app works correctly with routes', function () {
+describe('String reverse test', function () {
     beforeEach(function () {
         cy.visit('http://localhost:3000/recursion');
     });
@@ -7,10 +7,9 @@ describe('app works correctly with routes', function () {
     it('Check button logic', function () {
         cy.contains('Строка');
         cy.get('[data-testid="input"]').type('hello');
-        cy.get('button').should('not.be.disabled');
-        cy.wait(3000);
+        cy.contains('Развернуть').should('not.be.disabled');
         cy.get('[data-testid="input"]').clear();
-        cy.get('button').should('be.disabled');
+        cy.contains('Развернуть').should('be.disabled');
     });
 
     it('Check visual', function () {

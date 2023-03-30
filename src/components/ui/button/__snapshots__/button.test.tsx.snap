@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Button component Button rendering 1`] = `
+<button
+  className="text text_type_button text_color_primary button undefined false "
+  data-testid="button"
+  type="button"
+>
+  <p
+    className="text undefined"
+    data-testid="button-text"
+  >
+    ButtonTextTest
+  </p>
+</button>
+`;
