@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test RadioInput component RadioInput rendering 1`] = `
+<div
+  className="content "
+>
+  <input
+    className="input"
+    htmlFor="test"
+    id="key"
+    type="radio"
+  />
+  <label
+    className="text text_type_button label"
+  >
+    test
+  </label>
+</div>
+`;

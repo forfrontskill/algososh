@@ -37,6 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={className}
       type={type}
       disabled={isLoader || disabled}
+      data-testid="button"
       {...rest}
     >
       {isLoader ? (
@@ -44,7 +45,7 @@ export const Button: React.FC<ButtonProps> = ({
       ) : (
         <>
           {sorting && currentIcon}
-          <p className={`text ${sorting && "ml-5"}`}>{text}</p>
+          <p className={`text ${sorting && "ml-5"}`} data-testid="button-text">{text}</p>
         </>
       )}
     </button>

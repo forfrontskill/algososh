@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Input component Input rendering 1`] = `
+<div
+  className="content "
+>
+  <input
+    className="input text text_type_input text_color_input"
+    data-testid="input"
+    placeholder="Введите текст"
+    type="text"
+  />
+</div>
+`;

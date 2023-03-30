@@ -343,6 +343,7 @@ export const ListPage: React.FC = () => {
           isLimitText={true}
           placeholder='Введите значение'
           onChange={handleInputValueChange}
+          data-testid="input-value"
         />
         <Button
           extraClass={styles.SmallButton}
@@ -386,6 +387,7 @@ export const ListPage: React.FC = () => {
           value={inputIndexForm}
           placeholder='Введите индекс'
           onChange={handleInputIndexChange}
+          data-testid="input-index"
         />
         <Button
           extraClass={styles.LargeButton}
