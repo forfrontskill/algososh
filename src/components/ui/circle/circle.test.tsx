@@ -5,7 +5,7 @@ import { ElementStates } from '../../../types/element-states';
 import renderer from 'react-test-renderer';
 describe('Test Circle component', () => {
 
-    it('Button rendering', () => {
+    it('Circle rendering', () => {
         const tree = renderer
           .create(<Circle/>)
           .toJSON();
